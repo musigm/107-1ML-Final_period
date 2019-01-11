@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[7]:
 
 
 import csv
@@ -25,8 +25,7 @@ with open('winequality-red.csv', newline='') as csvfile:
         #    wine['sulphates'], wine['alcohol']])
         #wines_y.append(wine['quality'])
         
-        wines_x.append([ wine['total sulfur dioxide'], wine['pH'], 
-            wine['sulphates']])
+        wines_x.append([ wine['total sulfur dioxide'], wine['pH'], wine['sulphates']])
         wines_y.append(wine['quality'])
     
 # 切分訓練與測試資料
@@ -37,8 +36,11 @@ from sklearn import tree
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(test_X, test_Y)
 
+#winefeature_names=['fixed acidity','volatile acidity','citric acid','residual sugar','free sulfur dioxide',
+#                  'total sulfur dioxide','chlorides','density','pH','sulphates','alcohol']
+
 winefeature_names=['total sulfur dioxide','pH','sulphates']
-winetarget_names=['3','4','5','6','7','8']
+winetarget_names = ['3','4','5','6','7','8']
 
 dot_data = tree.export_graphviz(clf, out_file=None, max_depth=None,
                                 feature_names=winefeature_names,
@@ -51,4 +53,10 @@ dot_data = tree.export_graphviz(clf, out_file=None, max_depth=None,
 #畫圖 
 graph = pydotplus.graph_from_dot_data(dot_data)  
 Image(graph.create_png())  
+
+
+# In[ ]:
+
+
+
 

@@ -39,9 +39,3 @@ test_Y_predicted = svc.predict(test_X)
 accuracy = metrics.accuracy_score(test_Y, test_Y_predicted)
 print(accuracy)
 
-
-# In[ ]:
-
-
-
-
